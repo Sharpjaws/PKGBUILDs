@@ -1,0 +1,1 @@
+Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Zandronum, Doom64EX and DoomRPG written in AngularMaterial on NWJS for Windows, Linux and OSX. Updated version of [ssgl-doom-launcher-git](http://archlinux.org) 

@@ -1,0 +1,56 @@
+# Maintainers: Michael DeGuzis <mdeguzis@gmail.com>, Sharpjaws <sharpjawsflex@gmail.com>
+
+pkgname=ssgl-doom-launcher-git-updated
+pkgver=v2.0.0.devpreview.14.r2.g2658a1b
+pkgrel=1
+pkgdesc="Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Zandronum, Doom64EX and DoomRPG written in AngularMaterial on NWJS for Windows, Linux and OSX."
+arch=('x86_64' 'i686')
+url="https://github.com/FreaKzero/ssgl-doom-launcher"
+license=('MIT')
+makedepends=('git' 'yarn')
+source=(
+  $pkgname'::git+https://github.com/FreaKzero/ssgl-doom-launcher.git'
+  'ssgl-launch'
+)
+sha256sums=(
+  'SKIP'
+  '7dc5bd3454f96e5f3cc099f53d71aae96aa36bd1eeb724abe206d75640e8d959'
+)
+
+pkgver() {
+
+  cd "$pkgname"
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+
+}
+
+build() {
+
+  cd "$pkgname/app"
+  npm install && npm run-script package
+}
+
+package() {
+
+  mkdir -p $pkgdir/usr/bin
+  mkdir -p $pkgdir/usr/share/ssgl
+  mkdir -p $pkgdir/usr/share/ssgl/locales
+  mkdir -p $pkgdir/usr/share/ssgl/resources
+  mkdir -p $pkgdir/usr/share/ssgl/swiftshader
+
+  cd "$srcdir/$pkgname/app"
+
+  install -Dm755 "dist/linux-unpacked/"*.so "$pkgdir/usr/share/ssgl/"
+  install -Dm755 "dist/linux-unpacked/"*.bin "$pkgdir/usr/share/ssgl/"
+  install -Dm755 "dist/linux-unpacked/"*.pak "$pkgdir/usr/share/ssgl/"
+  install -m755 "dist/linux-unpacked/icudtl.dat" "$pkgdir/usr/share/ssgl/icudtl.dat"
+
+  install -m755 "dist/linux-unpacked/chrome-sandbox" "$pkgdir/usr/share/ssgl/chrome-sandbox"
+  install -Dm755 "dist/linux-unpacked/locales/"*.pak "$pkgdir/usr/share/ssgl/locales"
+  install -m755 "dist/linux-unpacked/resources/"*.asar "$pkgdir/usr/share/ssgl/resources/app.asar"
+  install -Dm755 "dist/linux-unpacked/swiftshader/"*.so "$pkgdir/usr/share/ssgl/swiftshader"
+
+  install -m755 "dist/linux-unpacked/ssgl-doom-launcher" "$pkgdir/usr/share/ssgl/ssgl"
+  install -m755 "$srcdir/ssgl-launch" "$pkgdir/usr/bin/ssgl"
+
+}
