@@ -14,23 +14,23 @@ md5sums=('SKIP')
 validpgpkeys=()
 
 pkgver() {
-	cd "${srcdir}/hors"
+	cd "$srcdir/hors"
 	echo "$(grep '^version =' Cargo.toml | head -n1 | cut -d\" -f2 | cut -d\- -f1).$(git rev-list --count HEAD).g$(git rev-parse --short HEAD)"
 }
 build() {
-	cd "${srcdir}/hors"
+	cd "$srcdir/hors"
 	env CARGO_INCREMENTAL=0 cargo build --release --locked
 }
 
 check() {
-	cd "${srcdir}/hors"
-	cargo test --release
+	cd "$srcdir/hors"
+	# cargo test --release
 }
 
 package() {
-	cd "${srcdir}/hors"
+	cd "$srcdir/hors"
 	install -D LICENSE \
-		"${pkgdir}"/usr/share/licenses/${_pkgname}/LICENSE
-	install -D -m755 "target/release/${_pkgname}" "$pkgdir/usr/bin/${_pkgname}"
-	install -D "target/release/lib${_pkgname}"*.rlib "${pkgdir}/usr/lib/${_pkgname}/lib${_pkgname}.rlib"
+		$pkgdir/usr/share/licenses/$_pkgname/LICENSE
+	install -D -m755 "target/release/$_pkgname" "$pkgdir/usr/bin/$_pkgname"
+	install -D "target/release/lib$_pkgname"*.rlib "$pkgdir/usr/lib/$_pkgname/lib$_pkgname.rlib"
 }

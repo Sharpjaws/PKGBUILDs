@@ -1,4 +1,6 @@
 # Maintainer: Johannes Arnold <johannesarnold@stud.uni-hannover.de>
+# Contributor: Sharpjaws <sharpjawsflex@gmail.com>
+
 pkgname=xfwm4-rounded-corners-updated
 pkgver=4.14.0
 pkgrel=1
@@ -20,10 +22,10 @@ options=()
 install=
 changelog=
 source=('git+https://github.com/xfce-mirror/xfwm4.git'
-        'git+https://github.com/wsdfhjxc/xfwm-rounded-corners-patch.git')
+	'git+https://github.com/wsdfhjxc/xfwm-rounded-corners-patch.git')
 noextract=()
 md5sums=('SKIP'
-         'SKIP')
+	'SKIP')
 validpgpkeys=()
 
 prepare() {
@@ -37,7 +39,6 @@ build() {
 	./autogen.sh --prefix=/usr
 	make
 }
-
 
 check() {
 	cd "$srcdir/xfwm4"

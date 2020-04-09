@@ -1,4 +1,5 @@
-# Maintainers: Michael DeGuzis <mdeguzis@gmail.com>, Sharpjaws <sharpjawsflex@gmail.com>
+# Maintainer: Michael DeGuzis <mdeguzis@gmail.com>
+# Contributor: Sharpjaws <sharpjawsflex@gmail.com>
 
 pkgname=ssgl-doom-launcher-git-updated
 pkgver=v2.0.0.devpreview.14.r8.g371528a
