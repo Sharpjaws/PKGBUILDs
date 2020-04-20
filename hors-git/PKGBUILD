@@ -24,7 +24,7 @@ build() {
 
 check() {
 	cd "$srcdir/hors"
-	# cargo test --release
+	cargo test --release
 }
 
 package() {

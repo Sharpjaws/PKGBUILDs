@@ -2,7 +2,7 @@
 # Contributor: Sharpjaws <sharpjawsflex@gmail.com>
 
 pkgname=ssgl-doom-launcher-git-updated
-pkgver=v2.0.0.devpreview.14.r8.g371528a
+pkgver=v2.0.0.devpreview.21.r9.g7eaf837
 pkgrel=1
 pkgdesc="Doom Frontend with Oblige mapbuild integration for zdoom, gzDoom, Zandronum, Doom64EX and DoomRPG written in AngularMaterial on NWJS for Windows, Linux and OSX."
 arch=('x86_64' 'i686')
